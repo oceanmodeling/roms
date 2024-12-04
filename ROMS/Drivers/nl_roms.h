@@ -218,6 +218,7 @@
       CALL initial
 !$OMP END PARALLEL
       IF (FoundError(exit_flag, NoError, __LINE__, MyFile)) RETURN
+        print*, "here 10 "
 !
 !  Initialize run or ensemble counter.
 !
@@ -237,7 +238,7 @@
         END DO
       END IF
 #endif
-        print*, "here 10 "
+        print*, "here 11 "
 #ifdef ENKF_RESTART
 !
 !  Create Ensenble Kalman Filter (EnKF) reastart NetCDF file.
