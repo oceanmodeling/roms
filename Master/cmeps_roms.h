@@ -2129,7 +2129,9 @@
 !-----------------------------------------------------------------------
 !
       first=.TRUE.
+      print*, "before exit_flag, NoError = ", exit_flag, NoError
       CALL ROMS_initialize (first, mpiCOMM=MyComm)
+      print*, "after  exit_flag, NoError = ", exit_flag, NoError
       IF (exit_flag.ne.NoError) THEN
         rc=ESMF_RC_OBJ_INIT
         IF (ESMF_LogFoundError(rcToCheck=rc,                            &

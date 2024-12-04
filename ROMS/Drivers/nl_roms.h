@@ -207,6 +207,7 @@
 # endif
       END DO
 #endif
+        print*, "here 9 "
 !
 !-----------------------------------------------------------------------
 !  Initialize nonlinear model state variables over all nested grids,
@@ -236,6 +237,7 @@
         END DO
       END IF
 #endif
+        print*, "here 10 "
 #ifdef ENKF_RESTART
 !
 !  Create Ensenble Kalman Filter (EnKF) reastart NetCDF file.
@@ -248,6 +250,7 @@
         END DO
       END IF
 #endif
+        print*, "here 11 "
 !
       RETURN
       END SUBROUTINE ROMS_initialize
