@@ -116,7 +116,9 @@
 !  Initialize parallel control switches. These scalars switches are
 !  independent from standard input parameters.
 !
+        print*, "here 1 "
         CALL initialize_parallel
+        print*, "here 2 "
 !
 !  Set the ROMS standard output unit to write verbose execution info.
 !  Notice that the default standard out unit in Fortran is 6.
@@ -130,6 +132,7 @@
           stdout=stdout_unit(Master)
           Set_StdOutUnit=.FALSE.
         END IF
+        print*, "here 3 "
 !
 !  Read in model tunable parameters from standard input. Allocate and
 !  initialize variables in several modules after the number of nested
@@ -137,6 +140,7 @@
 !
         CALL inp_par (iNLM)
         IF (FoundError(exit_flag, NoError, __LINE__, MyFile)) RETURN
+        print*, "here  4 "
 !
 !  Set domain decomposition tile partition range.  This range is
 !  computed only once since the "first_tile" and "last_tile" values
@@ -156,6 +160,7 @@
         last_tile (ng)=first_tile(ng)+chunk_size-1
       END DO
 !$OMP END PARALLEL
+        print*, "here 5 "
 !
 !  Initialize internal wall clocks. Notice that the timings does not
 !  includes processing standard input because several parameters are
@@ -173,14 +178,17 @@
           END DO
 !$OMP END PARALLEL
         END DO
+        print*, "here 6 "
 !
 !  Allocate and initialize all model state arrays.
 !
 !$OMP PARALLEL
         CALL ROMS_allocate_arrays (allocate_vars)
+        print*, "here 7 "
         CALL ROMS_initialize_arrays
 !$OMP END PARALLEL
         IF (FoundError(exit_flag, NoError, __LINE__, MyFile)) RETURN
+        print*, "here 8 "
 
       END IF
 
