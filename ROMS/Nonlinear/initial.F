@@ -110,6 +110,7 @@
 !   Initialize model variables.
 !=======================================================================
 !
+      print*, "initial - here 1"
 !$OMP MASTER
       IF (Master) THEN
 #if defined PERTURBATION
@@ -127,6 +128,7 @@
  20     FORMAT (/,1x,a,a,/,1x,'*******')
       END IF
 !$OMP END MASTER
+      print*, "initial - here 2"
 !
 !-----------------------------------------------------------------------
 !  Initialize time stepping indices and counters.
@@ -183,6 +185,7 @@
       avgpe=0.0_dp
       avgkp=0.0_dp
       volume=0.0_dp
+      print*, "initial - here 3"
 
 #ifdef PROFILE
 !
@@ -197,6 +200,7 @@
       END DO
 !$OMP BARRIER
 #endif
+      print*, "initial - here 4"
 
 #ifdef FOUR_DVAR
 !
@@ -266,6 +270,7 @@
 # endif
 !$OMP BARRIER
 #endif
+      print*, "initial - here 5"
 !
 !-----------------------------------------------------------------------
 !  Set application grid, metrics, and associated variables and
@@ -278,6 +283,7 @@
           SetGridConfig(ng)=.FALSE.
         END IF
       END DO
+      print*, "initial - here 6"
 !
 !-----------------------------------------------------------------------
 !  Initialize horizontal mixing coefficients. If applicable, scale
@@ -294,6 +300,7 @@
         END DO
 !$OMP BARRIER
       END DO
+      print*, "initial - here 7"
 
 #ifdef ANA_SPONGE
 !
@@ -311,6 +318,7 @@
         END IF
       END DO
 #endif
+      print*, "initial - here 8"
 !
 !=======================================================================
 !  Initialize model state variables and forcing.  This part is
@@ -328,6 +336,7 @@
 !$OMP BARRIER
       END DO
 #endif
+      print*, "initial - here 9"
 
 #if defined SOLVE3D && !defined INI_FILE
 !
@@ -343,6 +352,7 @@
 !$OMP BARRIER
       END DO
 #endif
+      print*, "initial - here 10"
 !
 !-----------------------------------------------------------------------
 !  Set primitive variables initial conditions.
@@ -361,6 +371,7 @@
         END IF
       END DO
 #endif
+      print*, "initial - here 11"
 
 #if defined ANA_PASSIVE && defined SOLVE3D
 !
@@ -375,6 +386,7 @@
         END IF
       END DO
 #endif
+      print*, "initial - here 12"
 
 #if defined ANA_BIOLOGY && defined SOLVE3D
 !
@@ -389,6 +401,7 @@
         END IF
       END DO
 #endif
+      print*, "initial - here 13"
 
 #if defined ANA_SEDIMENT && defined SOLVE3D
 !
@@ -404,6 +417,7 @@
         END IF
       END DO
 #endif
+      print*, "initial - here 14"
 
 #if defined INI_FILE && !defined RBL4DVAR_FCT_SENSITIVITY
 !
@@ -438,6 +452,7 @@
         END IF
       END DO
 #endif
+      print*, "initial - here 15"
 
 #ifdef WET_DRY
 !
@@ -470,6 +485,7 @@
         END IF
       END DO
 #endif
+      print*, "initial - here 16"
 
 #if defined OBSERVATIONS && !defined RBL4DVAR_FCT_SENSITIVITY
 !
@@ -489,6 +505,7 @@
       END DO
 !$OMP BARRIER
 #endif
+      print*, "initial - here 17"
 
 #if (defined ADJUST_BOUNDARY          || \
      defined ADJUST_STFLUX            || \
@@ -517,6 +534,7 @@
         END DO
       END IF
 #endif
+      print*, "initial - here 18"
 
 #ifdef TLM_CHECK
 !
@@ -535,6 +553,7 @@
         END DO
       END IF
 #endif
+      print*, "initial - here 19"
 
 #ifdef SOLVE3D
 !
@@ -579,6 +598,7 @@
 !$OMP BARRIER
       END DO
 #endif
+      print*, "initial - here 20"
 
 #ifdef ANA_PSOURCE
 !
@@ -598,6 +618,7 @@
 !$OMP BARRIER
       END DO
 #endif
+      print*, "initial - here 21"
 
 #if defined FOUR_DVAR || !defined TANGENT || !defined ADJOINT
 !
@@ -677,6 +698,7 @@
       END DO
 # endif
 #endif
+      print*, "initial - here 22"
 
 #ifdef MASKING
 !
@@ -691,6 +713,7 @@
 !$OMP BARRIER
       END DO
 #endif
+      print*, "initial - here 23"
 
 #if !defined CORRELATION
 # ifdef NESTING
@@ -748,6 +771,7 @@
 #  endif
 # endif
 #endif
+      print*, "initial - here 24"
 
 #if defined PROPAGATOR || \
    (defined MASKING    && (defined READ_WATER || defined WRITE_WATER ))
@@ -764,6 +788,7 @@
 !$OMP BARRIER
       END DO
 #endif
+      print*, "initial - here 25"
 
 #if defined NLM_OUTER                || \
     defined RBL4DVAR                 || \
@@ -790,6 +815,7 @@
         END IF
       END DO
 #endif
+      print*, "initial - here 26"
 
 #if defined ANA_DRAG && defined UV_DRAG_GRID
 !
@@ -806,6 +832,7 @@
         END DO
       END IF
 #endif
+      print*, "initial - here 27"
 !
 !-----------------------------------------------------------------------
 !  Compute grid stiffness.
@@ -820,6 +847,7 @@
 !$OMP BARRIER
         END DO
       END IF
+      print*, "initial - here 28"
 
 #if defined FLOATS || defined STATIONS
 !
@@ -835,6 +863,7 @@
 !$OMP BARRIER
       END DO
 #endif
+      print*, "initial - here 29"
 
 # if defined WAV_COUPLING && defined MCT_LIB
 !
@@ -850,6 +879,7 @@
         IF (Master) WRITE (stdout,'(/)')
       END DO
 # endif
+      print*, "initial - here 30"
 !
 !-----------------------------------------------------------------------
 !  Initialize time-stepping counter and date/time string. Save NLM
@@ -862,6 +892,7 @@
         CALL time_string (time(ng), time_code(ng))
       END DO
 
+      print*, "initial - here 31"
 #ifdef PROFILE
 !
 !-----------------------------------------------------------------------
@@ -875,6 +906,7 @@
 !$OMP BARRIER
       END DO
 #endif
+      print*, "initial - here 32"
 !
       RETURN
       END SUBROUTINE initial
